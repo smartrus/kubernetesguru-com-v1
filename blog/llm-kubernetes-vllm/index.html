@@ -1,0 +1,245 @@
+<!doctype html><html lang=en><head><link rel=preconnect href=https://www.googletagmanager.com crossorigin><link rel=preconnect href=https://js.hs-scripts.com crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-FT1XTRZGS2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FT1XTRZGS2")</script><meta charset=utf-8><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, snippet, archive"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#f97316"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black-translucent"><meta name=apple-mobile-web-app-title content="KubernetesGuru"><title>Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling | Kubernetes Guru | Kubernetes Consulting & Expert Guides</title><meta name=description content="Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies."><meta name=keywords content="kubernetes,kubernetes consulting,kubernetes expert,kubernetes guide,kubectl,kubernetes cost optimization,kubernetes security,managed kubernetes,kubernetes platform engineering,kubernetes migration,k8s consulting,kubernetes tools,llm,vllm,ai-ml,gpu"><meta name=author content="KubernetesGuru"><meta name=ai-content-summary content="Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies."><link rel=canonical href=https://kubernetesguru.com/blog/llm-kubernetes-vllm/><link rel=icon type=image/svg+xml href=/images/logos/favicon.svg><link rel=apple-touch-icon href=/images/logos/logo-mark-1024.png><meta property="og:title" content="Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling"><meta property="og:description" content="Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies."><meta property="og:type" content="article"><meta property="article:published_time" content="2026-03-12T10:35:00Z"><meta property="article:modified_time" content="2026-03-12T10:35:00Z"><meta property="article:tag" content="kubernetes"><meta property="article:tag" content="llm"><meta property="article:tag" content="vllm"><meta property="article:tag" content="ai-ml"><meta property="article:tag" content="gpu"><meta property="og:url" content="https://kubernetesguru.com/blog/llm-kubernetes-vllm/"><meta property="og:site_name" content="Kubernetes Guru | Kubernetes Consulting & Expert Guides"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://kubernetesguru.com/images/blog/llm-kubernetes-vllm.webp"><meta property="og:image:alt" content="Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@rustemabd"><meta name=twitter:title content="Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling"><meta name=twitter:description content="Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies."><meta name=twitter:image content="https://kubernetesguru.com/images/blog/llm-kubernetes-vllm.webp"><link rel=alternate type=application/rss+xml title="Kubernetes Guru | Kubernetes Consulting & Expert Guides" href=https://kubernetesguru.com/index.xml><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","@id":"https:\/\/kubernetesguru.com\/#organization","name":"KubernetesGuru","url":"https:\/\/kubernetesguru.com\/","logo":"https:\/\/kubernetesguru.com\/images/logos/logo-mark-1024.png","description":"KubernetesGuru.com is the global Kubernetes authority - expert consulting guides, interactive tools, and deep technical resources for engineers and platform teams worldwide.","email":"hello@kubernetes.ae","address":{"@type":"PostalAddress","streetAddress":"","addressLocality":"Global","addressRegion":"","postalCode":"","addressCountry":"US"},"sameAs":["https:\/\/www.linkedin.com\/company\/nomadx-ae","https:\/\/github.com\/nomadx-ae","https:\/\/twitter.com\/rustemabd"]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"WebSite","name":"Kubernetes Guru | Kubernetes Consulting \u0026 Expert Guides","url":"https:\/\/kubernetesguru.com\/","publisher":{"@type":"Organization","name":"KubernetesGuru"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/kubernetesguru.com\/"},{"@type":"ListItem","position":2,"name":"Kubernetes Guides \u0026 Resources","item":"https:\/\/kubernetesguru.com\/blog\/"},{"@type":"ListItem","position":3,"name":"Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling","item":"https:\/\/kubernetesguru.com\/blog\/llm-kubernetes-vllm\/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling","description":"Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies.","url":"https:\/\/kubernetesguru.com\/blog\/llm-kubernetes-vllm\/","datePublished":"2026-03-12T10:35:00Z","dateModified":"2026-03-12T10:35:00Z","image":{"@type":"ImageObject","url":"https:\/\/kubernetesguru.com\/images\/blog\/llm-kubernetes-vllm.webp","width":1200,"height":630},"author":[{"@type":"Person","name":"KubernetesGuru Team"}],"publisher":{"@type":"Organization","name":"KubernetesGuru","logo":{"@type":"ImageObject","url":"https:\/\/kubernetesguru.com\/images/logos/logo-mark-1024.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/kubernetesguru.com\/blog\/llm-kubernetes-vllm\/"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":[".page-hero",".blog-banner-img",".content h2",".content p:first-of-type"]}</script><link rel=stylesheet href=/css/main.min.8977c13d3dc3b32a6d66a85b686f030f53ad2fe90379474c3181d61bb5bbfeb8.css integrity="sha256-iXfBPT3DsyptZqhbaG8DD1OtL+kDeUdMMYHWG7W7/rg="></head><body><a href=#main-content class=skip-link>Skip to main content</a><nav class=nav role=navigation aria-label="Main navigation"><div class=nav-inner><a href=/ class=nav-logo aria-label="KubernetesGuru — Home"><svg class="logo-icon-svg" viewBox="0 0 36 32" width="28" height="25"><polygon points="18,1 23.5,4.2 23.5,10.5 18,13.7 12.5,10.5 12.5,4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="9,12.3 14.5,15.5 14.5,21.8 9,25 3.5,21.8 3.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="27,12.3 32.5,15.5 32.5,21.8 27,25 21.5,21.8 21.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="13.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="22.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="18" cy="19.5" r="1.4" fill="currentColor" opacity=".85"/></svg>
+<span>kubernetes<span class=logo-accent>guru</span></span></a><div class=nav-links><div class=nav-dropdown><a href=https://nomadx.ae class=nav-dropdown-toggle aria-haspopup=true aria-expanded=false>Consulting <span class=nav-dropdown-arrow>&#9662;</span></a><div class=nav-dropdown-menu role=menu><a href=https://kubernetes.ae target=_blank rel=noopener>Kubernetes Consulting</a>
+<a href=https://devsecops.ae target=_blank rel=noopener>DevOps Consulting</a>
+<a href=https://ledgers.ae target=_blank rel=noopener>Agentic Payments</a>
+<a href=https://nomadx.ae target=_blank rel=noopener>AI Agents Consulting</a>
+<a href=https://aiml.qa target=_blank rel=noopener>AI/ML QA</a>
+<a href=https://remote.qa target=_blank rel=noopener>Remote QA Teams</a></div></div><a href=/services/>Services</a>
+<a href=/industries/>Industries</a>
+<a href=/tools/>Tools</a>
+<a href=/blog/>Blog</a>
+<a href=/about/>About</a>
+<a href=/contact/>Contact</a>
+<a href=/contact/ class="btn btn-primary btn-sm">Book a Call</a></div><button class=nav-toggle aria-label="Toggle menu" aria-expanded=false>
+<span></span><span></span><span></span></button></div></nav><main id=main-content><section class=page-hero><div class=container><div class=blog-meta>March 12, 2026 &#183; 7 min read</div><h1>Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling</h1><p>Deploy LLMs on Kubernetes with vLLM: GPU node setup, NVIDIA device plugin, KEDA autoscaling, multi-model serving, and spot GPU cost reduction strategies.</p></div></section><div class=blog-banner-section><div class=container><img src=/images/blog/llm-kubernetes-vllm.webp alt="Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling" title="Running LLMs on Kubernetes with vLLM - GPU Setup and Autoscaling" class=blog-banner-img loading=eager fetchpriority=high></div></div><section class="section section-dark"><div class="container content" style=max-width:800px><p><strong>Running large language models on Kubernetes</strong> has become a core infrastructure requirement for AI-native companies. vLLM - the highest-throughput LLM serving engine available as of 2026 - has become the standard for production LLM deployment, offering PagedAttention for memory efficiency and continuous batching for throughput.</p><p>This guide covers the complete setup: GPU node configuration in Kubernetes, deploying vLLM as a Kubernetes workload, autoscaling with KEDA, multi-model serving strategies, and cost optimization with spot GPU instances.</p><hr><h2 id=why-vllm-for-production-llm-serving>Why vLLM for Production LLM Serving</h2><p>Before infrastructure details, why vLLM specifically:</p><p><strong>PagedAttention</strong> - vLLM manages KV cache memory like an OS page table, eliminating memory waste from reserved but unused attention caches. This increases effective throughput by 2-4x compared to naive implementations.</p><p><strong>Continuous batching</strong> - vLLM dynamically batches requests at the iteration level rather than the request level. New requests join in-progress batches, dramatically improving GPU utilization during variable load.</p><p><strong>Tensor parallelism</strong> - vLLM can shard a single model across multiple GPUs within a node, enabling models too large for a single GPU.</p><p><strong>OpenAI-compatible API</strong> - the vLLM server exposes an API compatible with OpenAI&rsquo;s chat/completions endpoint. Applications built against OpenAI&rsquo;s API require zero code changes to switch to a self-hosted vLLM deployment.</p><hr><h2 id=step-1-gpu-node-pool-setup>Step 1: GPU Node Pool Setup</h2><p><strong>GPU nodes require specific configuration</strong> before Kubernetes can schedule GPU workloads on them.</p><p><strong>EKS GPU Node Group (eksctl):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#6272a4># eksctl cluster config for GPU node group</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>nodeGroups</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>name</span>: gpu-nodes
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>instanceType</span>: g5.xlarge    <span style=color:#6272a4># NVIDIA A10G, 24GB VRAM</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>desiredCapacity</span>: <span style=color:#bd93f9>2</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>minSize</span>: <span style=color:#bd93f9>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>maxSize</span>: <span style=color:#bd93f9>10</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>ami</span>: AL2_x86_64_GPU        <span style=color:#6272a4># GPU-optimized AMI with NVIDIA drivers</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>taints</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ff79c6>key</span>: nvidia.com/gpu
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>value</span>: <span style=color:#f1fa8c>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>effect</span>: NoSchedule
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>labels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>node-role.kubernetes.io/gpu</span>: <span style=color:#f1fa8c>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>nvidia.com/gpu.present</span>: <span style=color:#f1fa8c>&#34;true&#34;</span>
+</span></span></code></pre></div><p>The taint <code>nvidia.com/gpu=true:NoSchedule</code> is critical - it prevents non-GPU workloads from being scheduled on expensive GPU nodes.</p><p><strong>GKE GPU Node Pool:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gcloud container node-pools create gpu-pool <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --cluster my-cluster <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --region us-central1 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --machine-type n1-standard-8 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --accelerator <span style=color:#8be9fd;font-style:italic>type</span><span style=color:#ff79c6>=</span>nvidia-tesla-a100,count<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span> <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --num-nodes <span style=color:#bd93f9>2</span> <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --min-nodes <span style=color:#bd93f9>0</span> <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --max-nodes <span style=color:#bd93f9>10</span> <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --node-taints nvidia.com/gpu<span style=color:#ff79c6>=</span>present:NoSchedule
+</span></span></code></pre></div><hr><h2 id=step-2-nvidia-device-plugin>Step 2: NVIDIA Device Plugin</h2><p><strong>The NVIDIA Device Plugin</strong> is required for Kubernetes to recognize and allocate GPU resources. Without it, the scheduler can&rsquo;t see GPUs and resource requests for <code>nvidia.com/gpu</code> will fail.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Install NVIDIA Device Plugin as a DaemonSet</span>
+</span></span><span style=display:flex><span>kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.1/nvidia-device-plugin.yml
+</span></span></code></pre></div><p>Or via Helm (recommended for production, gives more configuration control):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
+</span></span><span style=display:flex><span>helm repo update
+</span></span><span style=display:flex><span>helm install nvidia-device-plugin nvdp/nvidia-device-plugin <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --namespace kube-system <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --set <span style=color:#8be9fd;font-style:italic>failOnInitError</span><span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>false</span>
+</span></span></code></pre></div><p>Verify GPU discovery:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># GPUs should appear as allocatable resources</span>
+</span></span><span style=display:flex><span>kubectl describe nodes | grep -A <span style=color:#bd93f9>10</span> <span style=color:#f1fa8c>&#34;Capacity:&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Look for: nvidia.com/gpu: 1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Test GPU allocation with a simple pod</span>
+</span></span><span style=display:flex><span>kubectl run gpu-test --image<span style=color:#ff79c6>=</span>nvidia/cuda:12.0-base-ubuntu20.04 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --restart<span style=color:#ff79c6>=</span>Never <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --limits<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#34;nvidia.com/gpu=1&#34;</span> <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  - nvidia-smi
+</span></span></code></pre></div><hr><h2 id=step-3-deploying-vllm-on-kubernetes>Step 3: Deploying vLLM on Kubernetes</h2><p>A complete vLLM Deployment spec for serving Llama 3.1 8B:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ff79c6>apiVersion</span>: apps/v1
+</span></span><span style=display:flex><span><span style=color:#ff79c6>kind</span>: Deployment
+</span></span><span style=display:flex><span><span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>name</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>namespace</span>: llm-serving
+</span></span><span style=display:flex><span><span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>replicas</span>: <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>app</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>app</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>tolerations</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ff79c6>key</span>: <span style=color:#f1fa8c>&#34;nvidia.com/gpu&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>operator</span>: <span style=color:#f1fa8c>&#34;Equal&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>value</span>: <span style=color:#f1fa8c>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>effect</span>: <span style=color:#f1fa8c>&#34;NoSchedule&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>nodeSelector</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>nvidia.com/gpu.present</span>: <span style=color:#f1fa8c>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ff79c6>name</span>: vllm
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>image</span>: vllm/vllm-openai:latest
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>command</span>:
+</span></span><span style=display:flex><span>          - python3
+</span></span><span style=display:flex><span>          - -m
+</span></span><span style=display:flex><span>          - vllm.entrypoints.openai.api_server
+</span></span><span style=display:flex><span>          - --model
+</span></span><span style=display:flex><span>          - meta-llama/Meta-Llama-3.1-8B-Instruct
+</span></span><span style=display:flex><span>          - --port
+</span></span><span style=display:flex><span>          - <span style=color:#f1fa8c>&#34;8000&#34;</span>
+</span></span><span style=display:flex><span>          - --tensor-parallel-size
+</span></span><span style=display:flex><span>          - <span style=color:#f1fa8c>&#34;1&#34;</span>              <span style=color:#6272a4># Use 1 GPU; set to 2+ for larger models</span>
+</span></span><span style=display:flex><span>          - --max-model-len
+</span></span><span style=display:flex><span>          - <span style=color:#f1fa8c>&#34;8192&#34;</span>           <span style=color:#6272a4># Maximum context window</span>
+</span></span><span style=display:flex><span>          - --gpu-memory-utilization
+</span></span><span style=display:flex><span>          - <span style=color:#f1fa8c>&#34;0.90&#34;</span>           <span style=color:#6272a4># Use 90% of GPU memory for KV cache</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>resources</span>:
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>limits</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>nvidia.com/gpu</span>: <span style=color:#bd93f9>1</span>     <span style=color:#6272a4># Request exactly 1 GPU</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>cpu</span>: <span style=color:#f1fa8c>&#34;8&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>memory</span>: <span style=color:#f1fa8c>&#34;32Gi&#34;</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>requests</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>nvidia.com/gpu</span>: <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>cpu</span>: <span style=color:#f1fa8c>&#34;4&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>memory</span>: <span style=color:#f1fa8c>&#34;16Gi&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>ports</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ff79c6>containerPort</span>: <span style=color:#bd93f9>8000</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>name</span>: http
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>env</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ff79c6>name</span>: HUGGING_FACE_HUB_TOKEN
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>valueFrom</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>secretKeyRef</span>:
+</span></span><span style=display:flex><span>              <span style=color:#ff79c6>name</span>: hf-token
+</span></span><span style=display:flex><span>              <span style=color:#ff79c6>key</span>: token
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>volumeMounts</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ff79c6>name</span>: model-cache
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>mountPath</span>: /root/.cache/huggingface
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>readinessProbe</span>:
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>httpGet</span>:
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>path</span>: /health
+</span></span><span style=display:flex><span>            <span style=color:#ff79c6>port</span>: <span style=color:#bd93f9>8000</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>initialDelaySeconds</span>: <span style=color:#bd93f9>60</span>   <span style=color:#6272a4># Models take time to load</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>periodSeconds</span>: <span style=color:#bd93f9>10</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>timeoutSeconds</span>: <span style=color:#bd93f9>5</span>
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>failureThreshold</span>: <span style=color:#bd93f9>30</span>      <span style=color:#6272a4># Allow up to 5 minutes for model loading</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ff79c6>name</span>: model-cache
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>persistentVolumeClaim</span>:
+</span></span><span style=display:flex><span>          <span style=color:#ff79c6>claimName</span>: model-cache-pvc   <span style=color:#6272a4># Persistent storage for model weights</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span><span style=color:#ff79c6>apiVersion</span>: v1
+</span></span><span style=display:flex><span><span style=color:#ff79c6>kind</span>: Service
+</span></span><span style=display:flex><span><span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>name</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>namespace</span>: llm-serving
+</span></span><span style=display:flex><span><span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>app</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>ports</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>port</span>: <span style=color:#bd93f9>8000</span>
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>targetPort</span>: <span style=color:#bd93f9>8000</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>type</span>: ClusterIP
+</span></span></code></pre></div><p><strong>Key parameters:</strong></p><ul><li><code>--gpu-memory-utilization 0.90</code> - allocates 90% of GPU VRAM to KV cache. Higher = more concurrent requests but less headroom</li><li><code>--max-model-len</code> - context window size. Shorter = more concurrent requests</li><li><code>--tensor-parallel-size</code> - number of GPUs to shard the model across. Required for models larger than a single GPU&rsquo;s VRAM</li></ul><hr><h2 id=step-4-persistent-model-storage-with-pvcs>Step 4: Persistent Model Storage with PVCs</h2><p><strong>Model weights are large</strong> - Llama 3.1 8B is ~16GB, Llama 3.1 70B is ~140GB. Downloading them from HuggingFace Hub every time a pod starts is slow (minutes) and increases costs. Use a PVC to cache models.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ff79c6>apiVersion</span>: v1
+</span></span><span style=display:flex><span><span style=color:#ff79c6>kind</span>: PersistentVolumeClaim
+</span></span><span style=display:flex><span><span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>name</span>: model-cache-pvc
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>namespace</span>: llm-serving
+</span></span><span style=display:flex><span><span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>accessModes</span>:
+</span></span><span style=display:flex><span>    - ReadOnlyMany    <span style=color:#6272a4># Multiple replicas can read the same models</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>storageClassName</span>: efs-sc   <span style=color:#6272a4># EFS on AWS, Filestore on GCP - shared filesystem</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>resources</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>requests</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>storage</span>: 500Gi
+</span></span></code></pre></div><p><strong>Pre-populate the model cache</strong> with an init container or a separate Job that downloads the model once:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ff79c6>initContainers</span>:
+</span></span><span style=display:flex><span>- <span style=color:#ff79c6>name</span>: download-model
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>image</span>: python:3.11
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>command</span>:
+</span></span><span style=display:flex><span>  - python3
+</span></span><span style=display:flex><span>  - -c
+</span></span><span style=display:flex><span>  - |<span style=color:#f1fa8c>
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    import os
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    from huggingface_hub import snapshot_download
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>    if not os.path.exists(&#39;/cache/models--meta-llama--Meta-Llama-3.1-8B-Instruct&#39;):
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>        snapshot_download(&#39;meta-llama/Meta-Llama-3.1-8B-Instruct&#39;,
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c>                         cache_dir=&#39;/cache&#39;)</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>env</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>name</span>: HUGGING_FACE_HUB_TOKEN
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>valueFrom</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>secretKeyRef</span>:
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>name</span>: hf-token
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>key</span>: token
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>volumeMounts</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>name</span>: model-cache
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>mountPath</span>: /cache
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>resources</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>requests</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>cpu</span>: <span style=color:#f1fa8c>&#34;2&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>memory</span>: <span style=color:#f1fa8c>&#34;8Gi&#34;</span>
+</span></span></code></pre></div><hr><h2 id=step-5-autoscaling-with-keda>Step 5: Autoscaling with KEDA</h2><p><strong>Standard HPA doesn&rsquo;t work well for LLM serving</strong> - GPU utilization is a poor scaling metric because LLMs run near 100% GPU utilization even at low request rates (the GPU is constantly doing computation during inference). Scaling on GPU utilization leads to over-provisioning.</p><p>Better metrics for LLM autoscaling:</p><ul><li><strong>Queue depth</strong> - number of pending requests in the vLLM queue</li><li><strong>Active requests</strong> - number of currently processing requests</li><li><strong>Time-to-first-token latency</strong> - p95 TTFT above threshold = scale up</li></ul><p><strong>KEDA (Kubernetes Event-Driven Autoscaling)</strong> can scale on custom Prometheus metrics:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#ff79c6>apiVersion</span>: keda.sh/v1alpha1
+</span></span><span style=display:flex><span><span style=color:#ff79c6>kind</span>: ScaledObject
+</span></span><span style=display:flex><span><span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>name</span>: vllm-scaledobject
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>namespace</span>: llm-serving
+</span></span><span style=display:flex><span><span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>scaleTargetRef</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>name</span>: vllm-llama3-8b
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>minReplicaCount</span>: <span style=color:#bd93f9>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>maxReplicaCount</span>: <span style=color:#bd93f9>10</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>cooldownPeriod</span>: <span style=color:#bd93f9>300</span>    <span style=color:#6272a4># 5 min cooldown (avoid thrashing, GPU nodes are slow to provision)</span>
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>triggers</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>type</span>: prometheus
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>serverAddress</span>: http://prometheus:9090
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>metricName</span>: vllm_num_requests_waiting
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>threshold</span>: <span style=color:#f1fa8c>&#34;5&#34;</span>      <span style=color:#6272a4># Scale up when &gt;5 requests waiting</span>
+</span></span><span style=display:flex><span>      <span style=color:#ff79c6>query</span>: sum(vllm_num_requests_waiting{namespace=&#34;llm-serving&#34;,deployment=&#34;vllm-llama3-8b&#34;})
+</span></span></code></pre></div><p>vLLM exposes Prometheus metrics at <code>/metrics</code> including:</p><ul><li><code>vllm_num_requests_waiting</code> - queue depth</li><li><code>vllm_num_requests_running</code> - active requests</li><li><code>vllm_gpu_cache_usage_perc</code> - KV cache utilization</li><li><code>vllm_time_to_first_token_seconds</code> - TTFT histogram</li></ul><hr><h2 id=multi-model-serving-strategies>Multi-Model Serving Strategies</h2><p>When serving multiple models, you have two architectural choices:</p><p><strong>Option 1: Dedicated deployment per model</strong> - separate Deployment (and GPU) for each model. Simple, complete isolation, but expensive if models are small or low-traffic.</p><p><strong>Option 2: Multi-model server</strong> - a single vLLM instance (or OpenLLM, Ray Serve) that serves multiple models, sharing GPU memory.</p><p>vLLM supports multiple models via its model router (available in vLLM 0.4+):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Serve two models on the same GPU</span>
+</span></span><span style=display:flex><span>vllm serve <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --model meta-llama/Meta-Llama-3.1-8B-Instruct <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --served-model-name llama3-8b <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --model mistralai/Mistral-7B-Instruct-v0.2 <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --served-model-name mistral-7b <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --gpu-memory-utilization 0.85
+</span></span></code></pre></div><p><strong>Ray Serve</strong> provides a more flexible multi-model serving platform if you need dynamic model loading/unloading or more complex routing logic.</p><hr><h2 id=cost-optimization-spot-gpu-instances>Cost Optimization: Spot GPU Instances</h2><p><strong>Spot GPU instances cost 60-75% less than on-demand.</strong> For batch inference workloads (not latency-sensitive), spot is viable with proper design.</p><p><strong>Make LLM workloads spot-tolerant:</strong></p><ol><li>Use <strong>Karpenter</strong> (EKS) or equivalent for fast GPU node provisioning - Karpenter can provision new GPU nodes in 60-90 seconds, vs Cluster Autoscaler&rsquo;s 3-5 minutes</li><li>Design for <strong>graceful shutdown</strong> - handle SIGTERM in the vLLM process to drain in-flight requests before shutdown</li><li>Set <strong>short inference timeouts</strong> on the client side - allow automatic retry on a different endpoint</li><li>Use <strong>multiple spot instance types</strong> in your node pool for better availability</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#6272a4># Karpenter NodeClaim for spot GPU</span>
+</span></span><span style=display:flex><span><span style=color:#ff79c6>apiVersion</span>: karpenter.sh/v1beta1
+</span></span><span style=display:flex><span><span style=color:#ff79c6>kind</span>: NodeClaim
+</span></span><span style=display:flex><span><span style=color:#ff79c6>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>name</span>: gpu-spot
+</span></span><span style=display:flex><span><span style=color:#ff79c6>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>requirements</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>key</span>: karpenter.k8s.aws/instance-gpu-name
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>operator</span>: In
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>values</span>: [<span style=color:#f1fa8c>&#34;a10g&#34;</span>, <span style=color:#f1fa8c>&#34;t4&#34;</span>, <span style=color:#f1fa8c>&#34;v100&#34;</span>]
+</span></span><span style=display:flex><span>  - <span style=color:#ff79c6>key</span>: karpenter.sh/capacity-type
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>operator</span>: In
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>values</span>: [<span style=color:#f1fa8c>&#34;spot&#34;</span>]
+</span></span><span style=display:flex><span>  <span style=color:#ff79c6>nodeClassRef</span>:
+</span></span><span style=display:flex><span>    <span style=color:#ff79c6>name</span>: gpu-nodeclass
+</span></span></code></pre></div><hr><h2 id=observability-for-llm-serving>Observability for LLM Serving</h2><p>Essential metrics to monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#6272a4># Grafana dashboard metrics for vLLM</span>
+</span></span><span style=display:flex><span>- vllm_num_requests_running          <span style=color:#6272a4># Active inference requests</span>
+</span></span><span style=display:flex><span>- vllm_num_requests_waiting          <span style=color:#6272a4># Queue depth (leading indicator)</span>
+</span></span><span style=display:flex><span>- vllm_gpu_cache_usage_perc         <span style=color:#6272a4># KV cache utilization (&gt;90% = memory pressure)</span>
+</span></span><span style=display:flex><span>- vllm_time_to_first_token_seconds  <span style=color:#6272a4># TTFT p50/p95/p99</span>
+</span></span><span style=display:flex><span>- vllm_request_success_total        <span style=color:#6272a4># Success rate</span>
+</span></span><span style=display:flex><span>- nvidia_gpu_utilization            <span style=color:#6272a4># Raw GPU utilization</span>
+</span></span></code></pre></div><p>Alert on:</p><ul><li>Queue depth > 10 for >2 minutes (scale up trigger)</li><li>p95 TTFT > 2 seconds (latency degradation)</li><li>GPU cache utilization > 95% (OOM risk)</li></ul><hr><h2 id=production-checklist-for-llm-on-kubernetes>Production Checklist for LLM on Kubernetes</h2><ul><li><input disabled type=checkbox> GPU node pool with appropriate instance type for model size</li><li><input disabled type=checkbox> NVIDIA Device Plugin deployed and verified</li><li><input disabled type=checkbox> vLLM Deployment with GPU requests, tolerations, and readiness probe</li><li><input disabled type=checkbox> Persistent model cache PVC (shared filesystem)</li><li><input disabled type=checkbox> KEDA ScaledObject using queue depth metric (not GPU utilization)</li><li><input disabled type=checkbox> Prometheus metrics scraping enabled on vLLM pods</li><li><input disabled type=checkbox> Grafana dashboard for TTFT, queue depth, cache utilization</li><li><input disabled type=checkbox> HuggingFace token in a Kubernetes Secret (not in env vars in code)</li><li><input disabled type=checkbox> Pod Disruption Budget set to maintain minimum replicas</li></ul><hr><h2 id=scale-your-ai-infrastructure>Scale Your AI Infrastructure</h2><p>Running LLMs in production requires expertise in both ML systems and Kubernetes infrastructure. Getting the memory configuration, autoscaling triggers, and spot instance strategy right makes the difference between a $5k/month and $20k/month GPU bill.</p><p>→ <a href=https://kubernetes.ae/services/ai-ml-infrastructure/>AI/ML Infrastructure service at kubernetes.ae</a> - we design and operate GPU-accelerated Kubernetes infrastructure for LLM serving, model training, and MLOps pipelines.</p></div></section><section class="cta-section animate-in"><div class=container><h2>Get Expert Kubernetes Help</h2><p>Talk to a <strong>certified Kubernetes expert</strong>. Free 30-minute consultation - actionable findings within days.</p><a href=/contact/ class="btn btn-primary">Talk to an Expert</a></div></section></main><footer class=footer><div class=container><div class=footer-grid><div class=footer-brand><a href=/ class=nav-logo><svg class="logo-icon-svg" viewBox="0 0 36 32" width="28" height="25"><polygon points="18,1 23.5,4.2 23.5,10.5 18,13.7 12.5,10.5 12.5,4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="9,12.3 14.5,15.5 14.5,21.8 9,25 3.5,21.8 3.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="27,12.3 32.5,15.5 32.5,21.8 27,25 21.5,21.8 21.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="13.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="22.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="18" cy="19.5" r="1.4" fill="currentColor" opacity=".85"/></svg>
+<span>kubernetes<span class=logo-accent>guru</span></span></a><p>The global Kubernetes authority. <strong>Expert Kubernetes consulting</strong>, interactive tools, and deep technical guides for engineering teams worldwide.</p></div><div class=footer-col><h4>Services</h4><a href=/services/k8s-health-assessment/>K8s Health Assessment</a>
+<a href=/services/k8s-cost-optimization/>K8s Cost Optimization</a>
+<a href=/services/k8s-security-hardening/>K8s Security Hardening</a>
+<a href=/services/ai-ml-infrastructure/>AI/ML Infrastructure</a>
+<a href=/services/platform-engineering/>Platform Engineering</a>
+<a href=/services/k8s-migration/>K8s Migration</a>
+<a href=/services/multi-cluster-strategy/>Multi-Cluster Strategy</a>
+<a href=/services/managed-k8s/>Managed K8s Operations</a></div><div class=footer-col><h4>Industries</h4><a href=/industries/fintech/>Fintech & Payments</a>
+<a href=/industries/healthcare/>Healthcare & Life Sciences</a>
+<a href=/industries/saas/>SaaS & Technology</a>
+<a href=/industries/media/>Media & Streaming</a>
+<a href=/industries/ecommerce/>E-commerce & Retail</a>
+<a href=/industries/ai-ml/>AI & Machine Learning</a></div><div class=footer-col><h4>Company</h4><a href=/about/>About</a>
+<a href=/blog/>Blog</a>
+<a href=/contact/>Contact</a>
+<a href=https://kubernetes.ae>kubernetes.ae</a>
+<a href=https://devsecops.ae>devsecops.ae</a>
+<a href=https://remote.qa>remote.qa</a>
+<a href=/legal/privacy-policy/>Privacy Policy</a>
+<a href=/legal/terms-of-service/>Terms of Service</a></div></div><div class=footer-bottom><span>&copy; 2026 KubernetesGuru.</span><div class=footer-social><a href=https://www.linkedin.com/company/nomadx-ae target=_blank rel=noopener>LinkedIn</a>
+<a href=https://github.com/nomadx-ae target=_blank rel=noopener>GitHub</a>
+<a href=https://twitter.com/rustemabd target=_blank rel=noopener>Twitter</a></div></div></div></footer><script src=/js/main.js defer></script><script type=text/javascript id=hs-script-loader async defer src=//js.hs-scripts.com/23332861.js></script></body></html>

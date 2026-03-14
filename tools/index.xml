@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Free Kubernetes Tools on Kubernetes Guru | Kubernetes Consulting &amp; Expert Guides</title><link>https://kubernetesguru.com/tools/</link><description>Recent content in Free Kubernetes Tools on Kubernetes Guru | Kubernetes Consulting &amp; Expert Guides</description><generator>Hugo</generator><language>en</language><atom:link href="https://kubernetesguru.com/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>kubectl Cheatsheet 2026 - Searchable Command Reference</title><link>https://kubernetesguru.com/tools/kubectl-cheatsheet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kubernetesguru.com/tools/kubectl-cheatsheet/</guid><description>&lt;style&gt;
+.cheat-container { max-width: 900px; margin: 2rem auto; }
+.search-row { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center; }
+.search-input { flex: 1; background: var(--bg-card); border: 1px solid var(--border-accent); color: var(--text-primary); padding: 0.6rem 1rem; border-radius: var(--radius); font-size: 0.95rem; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.filter-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.3rem 0.75rem; border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
+.filter-btn.active { background: var(--accent-subtle); border-color: var(--accent); color: var(--accent); }
+.cmd-table { width: 100%; border-collapse: collapse; }
+.cmd-table th { text-align: left; padding: 0.6rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+.cmd-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.88rem; vertical-align: top; }
+.cmd-table td:first-child { font-family: var(--font-mono); color: var(--accent); white-space: nowrap; }
+.cmd-table tr.hidden { display: none; }
+.cmd-table tr:hover td { background: var(--bg-card-hover); }
+.result-count { color: var(--text-muted); font-size: 0.85rem; }
+&lt;/style&gt;
+&lt;div class="cheat-container"&gt;
+ &lt;div class="search-row"&gt;
+ &lt;input class="search-input" id="cmdSearch" type="text" placeholder="Search commands, descriptions, examples..." oninput="filterCmds()"&gt;
+ &lt;span class="result-count" id="cmdCount"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div class="filter-row" id="filterRow"&gt;
+ &lt;button class="filter-btn active" onclick="setFilter('all', this)"&gt;All&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Pods', this)"&gt;Pods&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Deployments', this)"&gt;Deployments&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Services', this)"&gt;Services&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('ConfigMaps', this)"&gt;ConfigMaps&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Namespaces', this)"&gt;Namespaces&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Debugging', this)"&gt;Debugging&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('RBAC', this)"&gt;RBAC&lt;/button&gt;
+ &lt;button class="filter-btn" onclick="setFilter('Cluster', this)"&gt;Cluster&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;table class="cmd-table"&gt;
+ &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Command&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;th&gt;Example&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+ &lt;tbody id="cmdBody"&gt;
+ &lt;!-- Pods --&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all pods in current namespace&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -o wide&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List pods with node and IP info&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -o wide -A&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl describe pod &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show pod details, events, and container state&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe pod myapp-abc123&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl logs &amp;lt;pod&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Print logs for a pod container&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl logs myapp-abc123 -c mycontainer -f&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl logs --previous &amp;lt;pod&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Print logs from previous (crashed) container&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl logs --previous myapp-abc123&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl exec -it &amp;lt;pod&amp;gt; - bash&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Open interactive shell in pod&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl exec -it myapp-abc123 - /bin/sh&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl port-forward pod/&amp;lt;name&amp;gt; 8080:80&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Forward local port to pod port&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl port-forward pod/myapp-abc123 8080:8080&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl delete pod &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Delete pod (will restart if managed by controller)&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl delete pod myapp-abc123&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl top pods&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show CPU/memory usage of pods&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl top pods -n production --sort-by=memory&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl cp &amp;lt;pod&amp;gt;:/path ./local&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Copy files from pod to local&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl cp myapp-abc123:/app/logs ./logs&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -l app=&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Filter pods by label selector&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -l app=myapp,env=prod&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods --watch&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Watch pod status changes in real time&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -n production --watch&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl annotate pod &amp;lt;name&amp;gt; key=val&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Add or update annotation on a pod&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl annotate pod myapp team=backend&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Pods"&gt;&lt;td&gt;&lt;code&gt;kubectl label pod &amp;lt;name&amp;gt; key=val&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Add or update label on a pod&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl label pod myapp env=staging&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- Deployments --&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl get deployments&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all deployments&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get deployments -A&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl describe deployment &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show deployment details and events&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe deployment myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl rollout status deployment/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Watch deployment rollout progress&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl rollout status deployment/myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl rollout history deployment/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;View rollout history&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl rollout history deployment/myapp --revision=2&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl rollout undo deployment/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Roll back to previous version&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl rollout undo deployment/myapp --to-revision=2&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl scale deployment/&amp;lt;name&amp;gt; --replicas=N&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Scale deployment to N replicas&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl scale deployment/myapp --replicas=5&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl set image deployment/&amp;lt;name&amp;gt; &amp;lt;container&amp;gt;=&amp;lt;image&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Update container image&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl set image deployment/myapp app=myapp:v2.0&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl rollout restart deployment/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Rolling restart of all pods&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl rollout restart deployment/myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl get deployment -o yaml&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Export deployment YAML&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get deployment myapp -o yaml &amp;gt; myapp.yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl apply -f &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Apply or update resources from file&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl apply -f deployment.yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl delete deployment &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Delete a deployment and its pods&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl delete deployment myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl get replicasets&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List ReplicaSets (managed by deployments)&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get rs -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Deployments"&gt;&lt;td&gt;&lt;code&gt;kubectl set resources deployment/&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Update resource requests/limits&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl set resources deployment/myapp -c=app --limits=cpu=200m,memory=512Mi&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- Services --&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl get services&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all services&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get svc -A&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl describe service &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show service details and endpoints&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe svc myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl expose deployment &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create service from deployment&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl expose deployment myapp --port=80 --type=ClusterIP&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl port-forward svc/&amp;lt;name&amp;gt; 8080:80&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Forward local port to service&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl port-forward svc/myapp 8080:80&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl get endpoints &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show service endpoints (pod IPs)&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get endpoints myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl get ingress&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all Ingress resources&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get ingress -A&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl describe ingress &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show Ingress rules and backend details&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe ingress myapp-ingress&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Services"&gt;&lt;td&gt;&lt;code&gt;kubectl delete svc &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Delete a service&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl delete svc myapp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- ConfigMaps --&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl create configmap &amp;lt;name&amp;gt; --from-literal=key=val&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create ConfigMap from literal value&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create configmap myconfig --from-literal=DB_HOST=localhost&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl create configmap &amp;lt;name&amp;gt; --from-file=&amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create ConfigMap from file&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create configmap myconfig --from-file=config.yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl get configmap &amp;lt;name&amp;gt; -o yaml&lt;/code&gt;&lt;/td&gt;&lt;td&gt;View ConfigMap contents&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get configmap myconfig -o yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl create secret generic &amp;lt;name&amp;gt; --from-literal=key=val&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create generic secret&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create secret generic mysecret --from-literal=password=secret123&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl get secret &amp;lt;name&amp;gt; -o jsonpath&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Decode secret value&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get secret mysecret -o jsonpath='{.data.password}' | base64 -d&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl edit configmap &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Edit ConfigMap in-place&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl edit configmap myconfig -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="ConfigMaps"&gt;&lt;td&gt;&lt;code&gt;kubectl create secret tls &amp;lt;name&amp;gt; --cert --key&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create TLS secret from cert files&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create secret tls mytls --cert=tls.crt --key=tls.key&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- Namespaces --&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl get namespaces&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all namespaces&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get ns&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl create namespace &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create a namespace&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create ns production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl config set-context --current --namespace=&amp;lt;ns&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Set default namespace for context&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl config set-context --current --namespace=production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl get all -n &amp;lt;ns&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all resources in namespace&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get all -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl delete namespace &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Delete namespace and all its resources&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl delete ns old-environment&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl config get-contexts&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all kubeconfig contexts&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl config get-contexts&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl config use-context &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Switch to a different cluster context&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl config use-context prod-cluster&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Namespaces"&gt;&lt;td&gt;&lt;code&gt;kubectl config current-context&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show the current context name&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl config current-context&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- Debugging --&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl get events --sort-by=.lastTimestamp&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List events sorted by time&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get events -n production --sort-by=.lastTimestamp&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl describe node &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show node details, conditions, and capacity&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe node worker-node-1&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl run debug --image=busybox -it --rm&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Run temporary debug container&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl run debug --image=nicolaka/netshoot -it --rm - bash&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl debug node/&amp;lt;name&amp;gt; -it --image=ubuntu&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Debug node with privileged container&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl debug node/worker-1 -it --image=ubuntu&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -o wide --field-selector&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Filter pods by field&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods --field-selector=status.phase=Running&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods --show-labels&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show pod labels&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -n production --show-labels&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl apply --dry-run=client -f &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Validate manifest without applying&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl apply --dry-run=client -f deployment.yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl diff -f &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show diff between file and cluster state&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl diff -f deployment.yaml&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl logs -l app=&amp;lt;name&amp;gt; --all-containers&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Get logs from all pods matching label&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl logs -l app=myapp --all-containers -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Debugging"&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Extract specific fields with JSONPath&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pods -o jsonpath='{.items[*].status.podIP}'&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- RBAC --&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i &amp;lt;verb&amp;gt; &amp;lt;resource&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Check if current user can perform action&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i create pods -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i --list&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all actions current user can perform&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i --list -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i --as=&amp;lt;user&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Check permissions as another user&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl auth can-i create pods --as=deploy-bot -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl create role &amp;lt;name&amp;gt; --verb=&amp;lt;v&amp;gt; --resource=&amp;lt;r&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create a Role&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create role deployer --verb=get,list,create --resource=pods&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl create rolebinding &amp;lt;name&amp;gt; --role=&amp;lt;r&amp;gt; --user=&amp;lt;u&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Bind role to user&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create rolebinding deploy-binding --role=deployer --user=ci-bot&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl get clusterrolebindings -o wide&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all ClusterRoleBindings&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get clusterrolebindings -o wide | grep myuser&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl create serviceaccount &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Create a ServiceAccount&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create serviceaccount deploy-bot -n production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl get roles -n &amp;lt;ns&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List Roles in a namespace&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get roles -n production -o wide&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl describe clusterrole &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show ClusterRole rules in detail&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl describe clusterrole cluster-admin&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="RBAC"&gt;&lt;td&gt;&lt;code&gt;kubectl create clusterrolebinding &amp;lt;name&amp;gt; --clusterrole=&amp;lt;r&amp;gt; --user=&amp;lt;u&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Bind ClusterRole to user cluster-wide&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl create clusterrolebinding admin-binding --clusterrole=cluster-admin --user=admin&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;!-- Cluster --&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl get nodes&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List all cluster nodes&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get nodes -o wide&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl top nodes&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show CPU/memory usage of nodes&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl top nodes --sort-by=cpu&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl cordon &amp;lt;node&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Mark node unschedulable&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl cordon worker-node-1&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl drain &amp;lt;node&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Drain node for maintenance&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl drain worker-node-1 --ignore-daemonsets --delete-emptydir-data&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl uncordon &amp;lt;node&amp;gt;&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Re-enable scheduling on node&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl uncordon worker-node-1&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl version&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show client and server version&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl version --short&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl cluster-info&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Show cluster endpoint and service URLs&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl cluster-info dump &amp;gt; cluster-dump.txt&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl taint nodes &amp;lt;node&amp;gt; key=val:NoSchedule&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Add taint to node&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl taint nodes gpu-node gpu=true:NoSchedule&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl label nodes &amp;lt;node&amp;gt; key=val&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Add label to node&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl label nodes worker-1 tier=production&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl get componentstatuses&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Check health of cluster components&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get cs&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl get storageclasses&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List available StorageClasses&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get sc&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr data-cat="Cluster"&gt;&lt;td&gt;&lt;code&gt;kubectl get pv&lt;/code&gt;&lt;/td&gt;&lt;td&gt;List PersistentVolumes cluster-wide&lt;/td&gt;&lt;td&gt;&lt;code&gt;kubectl get pv --sort-by=.spec.capacity.storage&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;/tbody&gt;
+ &lt;/table&gt;
+ &lt;div style="margin-top:2rem; padding:1.5rem; background:var(--bg-card); border:1px solid var(--border-accent); border-radius:var(--radius-lg);"&gt;
+ &lt;p style="margin:0; color:var(--text-secondary);"&gt;Need expert Kubernetes help? &lt;a href="https://kubernetes.ae/services/k8s-security-hardening/" style="color:var(--accent);"&gt;Our certified K8s engineers at kubernetes.ae&lt;/a&gt; can review your cluster security and RBAC configuration. →&lt;/p&gt;</description></item><item><title>Kubernetes Cluster Sizing Guide - Node Count &amp; Resource Calculator</title><link>https://kubernetesguru.com/tools/cluster-sizing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kubernetesguru.com/tools/cluster-sizing/</guid><description>&lt;style&gt;
+.sz-container { max-width: 800px; margin: 2rem auto; }
+.sz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.sz-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+.sz-section h3 { color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.sz-field { margin-bottom: 1rem; }
+.sz-field label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+.sz-field select, .sz-field input[type="range"] { width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-accent); color: var(--text-primary); padding: 0.5rem 0.75rem; border-radius: var(--radius); font-size: 0.9rem; }
+.sz-result { background: var(--bg-secondary); border: 2px solid var(--accent); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem; }
+.sz-result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; margin-bottom: 1.5rem; }
+.sz-metric { background: var(--bg-card); padding: 1rem; border-radius: var(--radius); }
+.sz-metric-val { font-size: 2rem; font-weight: 800; color: var(--accent); }
+.sz-metric-lbl { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem; }
+.sz-range-val { font-size: 0.9rem; color: var(--accent); font-weight: 600; }
+.sz-yaml { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-top: 1rem; }
+.sz-yaml pre { margin: 0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-primary); white-space: pre; }
+.sz-cta { display: inline-block; background: var(--accent); color: #fff; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; margin-top: 1rem; }
+@media (max-width: 600px) { .sz-grid { grid-template-columns: 1fr; } .sz-result-grid { grid-template-columns: 1fr; } }
+&lt;/style&gt;
+&lt;div class="sz-container"&gt;
+ &lt;p style="color:var(--text-secondary); margin-bottom:2rem;"&gt;Get node count, instance type, and autoscaling recommendations based on your workload profile. Adjust the inputs to match your expected load.&lt;/p&gt;</description></item><item><title>Kubernetes Cost Calculator - Estimate Your K8s Spend</title><link>https://kubernetesguru.com/tools/cost-calculator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kubernetesguru.com/tools/cost-calculator/</guid><description>&lt;style&gt;
+.tool-container { max-width: 800px; margin: 2rem auto; }
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.tool-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+.tool-section h3 { color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.field-group { margin-bottom: 1rem; }
+.field-group label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+.field-group select, .field-group input[type="range"], .field-group input[type="number"] {
+ width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-accent);
+ color: var(--text-primary); padding: 0.5rem 0.75rem; border-radius: var(--radius); font-size: 0.9rem;
+}
+.result-card { background: var(--bg-secondary); border: 2px solid var(--accent); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 1rem; }
+.result-value { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+.result-label { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+.savings-value { font-size: 1.5rem; font-weight: 700; color: var(--success); margin-top: 1rem; }
+.tool-cta { background: var(--accent); color: #fff; padding: 0.75rem 1.5rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 1rem; }
+.range-display { font-size: 0.9rem; color: var(--accent); font-weight: 600; }
+@media (max-width: 600px) { .tool-grid { grid-template-columns: 1fr; } }
+&lt;/style&gt;
+&lt;div class="tool-container"&gt;
+ &lt;p style="color:var(--text-secondary); margin-bottom:2rem;"&gt;Estimate your monthly Kubernetes infrastructure costs across EKS, GKE, and AKS. Adjust the sliders to match your setup.&lt;/p&gt;</description></item><item><title>Kubernetes RBAC Generator - Generate Role &amp; ClusterRole YAML</title><link>https://kubernetesguru.com/tools/rbac-generator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kubernetesguru.com/tools/rbac-generator/</guid><description>&lt;style&gt;
+.rbac-container { max-width: 900px; margin: 2rem auto; }
+.rbac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.rbac-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+.rbac-section h3 { color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.field-group { margin-bottom: 1rem; }
+.field-group label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
+.field-group input[type="text"], .field-group select { width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-accent); color: var(--text-primary); padding: 0.5rem 0.75rem; border-radius: var(--radius); font-size: 0.9rem; box-sizing: border-box; }
+.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+.checkbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); }
+.checkbox-item input[type="checkbox"] { accent-color: var(--accent); width: 14px; height: 14px; }
+.output-section { margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 1.5rem; }
+.output-section h3 { color: var(--accent); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.copy-btn { background: var(--accent); color: #fff; border: none; padding: 0.4rem 1rem; border-radius: var(--radius); cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.copy-btn:hover { background: var(--accent-hover); }
+pre { background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius); overflow-x: auto; margin: 0; }
+pre code { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-primary); }
+.copy-msg { font-size: 0.8rem; color: var(--success); margin-top: 0.5rem; display: none; }
+@media (max-width: 600px) { .rbac-grid { grid-template-columns: 1fr; } .checkbox-grid { grid-template-columns: 1fr 1fr !important; } }
+&lt;/style&gt;
+&lt;div class="rbac-container"&gt;
+ &lt;p style="color:var(--text-secondary); margin-bottom:2rem;"&gt;Generate Kubernetes Role or ClusterRole YAML instantly. Select your options and copy the output directly to your cluster.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,327 @@
+<!doctype html><html lang=en><head><link rel=preconnect href=https://www.googletagmanager.com crossorigin><link rel=preconnect href=https://js.hs-scripts.com crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-FT1XTRZGS2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FT1XTRZGS2")</script><meta charset=utf-8><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, snippet, archive"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#f97316"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black-translucent"><meta name=apple-mobile-web-app-title content="KubernetesGuru"><title>The Complete kubectl Cheatsheet 2026 - Every Command You Need | Kubernetes Guru | Kubernetes Consulting & Expert Guides</title><meta name=description content="The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place."><meta name=keywords content="kubernetes,kubernetes consulting,kubernetes expert,kubernetes guide,kubectl,kubernetes cost optimization,kubernetes security,managed kubernetes,kubernetes platform engineering,kubernetes migration,k8s consulting,kubernetes tools,cheatsheet,devops"><meta name=author content="KubernetesGuru"><meta name=ai-content-summary content="The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place."><link rel=canonical href=https://kubernetesguru.com/blog/kubectl-cheatsheet/><link rel=icon type=image/svg+xml href=/images/logos/favicon.svg><link rel=apple-touch-icon href=/images/logos/logo-mark-1024.png><meta property="og:title" content="The Complete kubectl Cheatsheet 2026 - Every Command You Need"><meta property="og:description" content="The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place."><meta property="og:type" content="article"><meta property="article:published_time" content="2026-03-12T10:00:00Z"><meta property="article:modified_time" content="2026-03-12T10:00:00Z"><meta property="article:tag" content="kubernetes"><meta property="article:tag" content="kubectl"><meta property="article:tag" content="cheatsheet"><meta property="article:tag" content="devops"><meta property="og:url" content="https://kubernetesguru.com/blog/kubectl-cheatsheet/"><meta property="og:site_name" content="Kubernetes Guru | Kubernetes Consulting & Expert Guides"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://kubernetesguru.com/images/blog/kubectl-cheatsheet.webp"><meta property="og:image:alt" content="The Complete kubectl Cheatsheet 2026 - Every Command You Need"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@rustemabd"><meta name=twitter:title content="The Complete kubectl Cheatsheet 2026 - Every Command You Need"><meta name=twitter:description content="The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place."><meta name=twitter:image content="https://kubernetesguru.com/images/blog/kubectl-cheatsheet.webp"><link rel=alternate type=application/rss+xml title="Kubernetes Guru | Kubernetes Consulting & Expert Guides" href=https://kubernetesguru.com/index.xml><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","@id":"https:\/\/kubernetesguru.com\/#organization","name":"KubernetesGuru","url":"https:\/\/kubernetesguru.com\/","logo":"https:\/\/kubernetesguru.com\/images/logos/logo-mark-1024.png","description":"KubernetesGuru.com is the global Kubernetes authority - expert consulting guides, interactive tools, and deep technical resources for engineers and platform teams worldwide.","email":"hello@kubernetes.ae","address":{"@type":"PostalAddress","streetAddress":"","addressLocality":"Global","addressRegion":"","postalCode":"","addressCountry":"US"},"sameAs":["https:\/\/www.linkedin.com\/company\/nomadx-ae","https:\/\/github.com\/nomadx-ae","https:\/\/twitter.com\/rustemabd"]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"WebSite","name":"Kubernetes Guru | Kubernetes Consulting \u0026 Expert Guides","url":"https:\/\/kubernetesguru.com\/","publisher":{"@type":"Organization","name":"KubernetesGuru"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/kubernetesguru.com\/"},{"@type":"ListItem","position":2,"name":"Kubernetes Guides \u0026 Resources","item":"https:\/\/kubernetesguru.com\/blog\/"},{"@type":"ListItem","position":3,"name":"The Complete kubectl Cheatsheet 2026 - Every Command You Need","item":"https:\/\/kubernetesguru.com\/blog\/kubectl-cheatsheet\/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"The Complete kubectl Cheatsheet 2026 - Every Command You Need","description":"The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place.","url":"https:\/\/kubernetesguru.com\/blog\/kubectl-cheatsheet\/","datePublished":"2026-03-12T10:00:00Z","dateModified":"2026-03-12T10:00:00Z","image":{"@type":"ImageObject","url":"https:\/\/kubernetesguru.com\/images\/blog\/kubectl-cheatsheet.webp","width":1200,"height":630},"author":[{"@type":"Person","name":"KubernetesGuru Team"}],"publisher":{"@type":"Organization","name":"KubernetesGuru","logo":{"@type":"ImageObject","url":"https:\/\/kubernetesguru.com\/images/logos/logo-mark-1024.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/kubernetesguru.com\/blog\/kubectl-cheatsheet\/"}}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":[".page-hero",".blog-banner-img",".content h2",".content p:first-of-type"]}</script><link rel=stylesheet href=/css/main.min.8977c13d3dc3b32a6d66a85b686f030f53ad2fe90379474c3181d61bb5bbfeb8.css integrity="sha256-iXfBPT3DsyptZqhbaG8DD1OtL+kDeUdMMYHWG7W7/rg="></head><body><a href=#main-content class=skip-link>Skip to main content</a><nav class=nav role=navigation aria-label="Main navigation"><div class=nav-inner><a href=/ class=nav-logo aria-label="KubernetesGuru — Home"><svg class="logo-icon-svg" viewBox="0 0 36 32" width="28" height="25"><polygon points="18,1 23.5,4.2 23.5,10.5 18,13.7 12.5,10.5 12.5,4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="9,12.3 14.5,15.5 14.5,21.8 9,25 3.5,21.8 3.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="27,12.3 32.5,15.5 32.5,21.8 27,25 21.5,21.8 21.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="13.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="22.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="18" cy="19.5" r="1.4" fill="currentColor" opacity=".85"/></svg>
+<span>kubernetes<span class=logo-accent>guru</span></span></a><div class=nav-links><div class=nav-dropdown><a href=https://nomadx.ae class=nav-dropdown-toggle aria-haspopup=true aria-expanded=false>Consulting <span class=nav-dropdown-arrow>&#9662;</span></a><div class=nav-dropdown-menu role=menu><a href=https://kubernetes.ae target=_blank rel=noopener>Kubernetes Consulting</a>
+<a href=https://devsecops.ae target=_blank rel=noopener>DevOps Consulting</a>
+<a href=https://ledgers.ae target=_blank rel=noopener>Agentic Payments</a>
+<a href=https://nomadx.ae target=_blank rel=noopener>AI Agents Consulting</a>
+<a href=https://aiml.qa target=_blank rel=noopener>AI/ML QA</a>
+<a href=https://remote.qa target=_blank rel=noopener>Remote QA Teams</a></div></div><a href=/services/>Services</a>
+<a href=/industries/>Industries</a>
+<a href=/tools/>Tools</a>
+<a href=/blog/>Blog</a>
+<a href=/about/>About</a>
+<a href=/contact/>Contact</a>
+<a href=/contact/ class="btn btn-primary btn-sm">Book a Call</a></div><button class=nav-toggle aria-label="Toggle menu" aria-expanded=false>
+<span></span><span></span><span></span></button></div></nav><main id=main-content><section class=page-hero><div class=container><div class=blog-meta>March 12, 2026 &#183; 8 min read</div><h1>The Complete kubectl Cheatsheet 2026 - Every Command You Need</h1><p>The definitive kubectl cheatsheet for 2026: every command for pods, deployments, services, RBAC, debugging, and cluster management - all in one place.</p></div></section><div class=blog-banner-section><div class=container><img src=/images/blog/kubectl-cheatsheet.webp alt="The Complete kubectl Cheatsheet 2026 - Every Command You Need" title="The Complete kubectl Cheatsheet 2026 - Every Command You Need" class=blog-banner-img loading=eager fetchpriority=high></div></div><section class="section section-dark"><div class="container content" style=max-width:800px><p><strong>kubectl mastery</strong> is the difference between spending 10 minutes debugging a pod crash and spending 2 hours on it. This cheatsheet covers every command you&rsquo;ll need in day-to-day Kubernetes operations - organized by task, with flags that actually matter.</p><p>Bookmark this page. Operators who know these commands cold resolve incidents 3-5x faster than those who don&rsquo;t.</p><hr><h2 id=how-to-read-this-guide>How to Read This Guide</h2><p>Commands are shown with the most common flags. Replace angle-bracketed values (<code>&lt;name></code>, <code>&lt;namespace></code>) with your actual resource names. All commands assume <code>kubectl</code> is configured to point at the right cluster context - run <code>kubectl config current-context</code> to verify.</p><hr><h2 id=pod-commands>Pod Commands</h2><p><strong>Getting pod information</strong> is the most frequent operation in Kubernetes debugging:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List pods in current namespace</span>
+</span></span><span style=display:flex><span>kubectl get pods
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List pods across all namespaces</span>
+</span></span><span style=display:flex><span>kubectl get pods -A
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List pods with node placement and IP</span>
+</span></span><span style=display:flex><span>kubectl get pods -o wide
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Watch pod status in real time</span>
+</span></span><span style=display:flex><span>kubectl get pods -w
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Show detailed pod events and state</span>
+</span></span><span style=display:flex><span>kubectl describe pod &lt;pod-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Describe a pod in a specific namespace</span>
+</span></span><span style=display:flex><span>kubectl describe pod &lt;pod-name&gt; -n &lt;namespace&gt;
+</span></span></code></pre></div><p><strong>Streaming and reading logs</strong> - critical for application debugging:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Tail logs for a pod</span>
+</span></span><span style=display:flex><span>kubectl logs &lt;pod-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Follow (stream) logs in real time</span>
+</span></span><span style=display:flex><span>kubectl logs -f &lt;pod-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Last 100 lines only</span>
+</span></span><span style=display:flex><span>kubectl logs --tail<span style=color:#ff79c6>=</span><span style=color:#bd93f9>100</span> &lt;pod-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Logs from a specific container in a multi-container pod</span>
+</span></span><span style=display:flex><span>kubectl logs &lt;pod-name&gt; -c &lt;container-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Logs from a previous crashed container</span>
+</span></span><span style=display:flex><span>kubectl logs &lt;pod-name&gt; --previous
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Logs from all pods with a label selector</span>
+</span></span><span style=display:flex><span>kubectl logs -l <span style=color:#8be9fd;font-style:italic>app</span><span style=color:#ff79c6>=</span>my-app --all-containers
+</span></span></code></pre></div><p><strong>Exec into a running container</strong> for live debugging:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Interactive shell in a running pod</span>
+</span></span><span style=display:flex><span>kubectl <span style=color:#8be9fd;font-style:italic>exec</span> -it &lt;pod-name&gt; - /bin/bash
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Run a single command without interactive shell</span>
+</span></span><span style=display:flex><span>kubectl <span style=color:#8be9fd;font-style:italic>exec</span> &lt;pod-name&gt; - env
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Exec into a specific container</span>
+</span></span><span style=display:flex><span>kubectl <span style=color:#8be9fd;font-style:italic>exec</span> -it &lt;pod-name&gt; -c &lt;container-name&gt; - /bin/sh
+</span></span></code></pre></div><p><strong>Port forwarding</strong> for local access to cluster services:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Forward local port 8080 to pod port 80</span>
+</span></span><span style=display:flex><span>kubectl port-forward pod/&lt;pod-name&gt; 8080:80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Forward to a service instead</span>
+</span></span><span style=display:flex><span>kubectl port-forward svc/&lt;service-name&gt; 8080:80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Background port forward (add &amp; or use tmux)</span>
+</span></span><span style=display:flex><span>kubectl port-forward pod/&lt;pod-name&gt; 8080:80 &amp;
+</span></span></code></pre></div><p><strong>Copy files</strong> to/from pods:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Copy from pod to local</span>
+</span></span><span style=display:flex><span>kubectl cp &lt;pod-name&gt;:/app/config.yaml ./config.yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Copy from local to pod</span>
+</span></span><span style=display:flex><span>kubectl cp ./config.yaml &lt;pod-name&gt;:/app/config.yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Copy with specific container</span>
+</span></span><span style=display:flex><span>kubectl cp &lt;pod-name&gt;:/app/logs -c &lt;container&gt; ./logs/
+</span></span></code></pre></div><p><strong>Resource usage</strong> - requires metrics-server installed:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># CPU and memory usage for all pods</span>
+</span></span><span style=display:flex><span>kubectl top pods
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Top pods sorted by CPU</span>
+</span></span><span style=display:flex><span>kubectl top pods --sort-by<span style=color:#ff79c6>=</span>cpu
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Top pods in a specific namespace</span>
+</span></span><span style=display:flex><span>kubectl top pods -n &lt;namespace&gt;
+</span></span></code></pre></div><hr><h2 id=deployment-commands>Deployment Commands</h2><p><strong>Managing deployments</strong> is where most cluster operations live:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List all deployments</span>
+</span></span><span style=display:flex><span>kubectl get deployments
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Detailed deployment info</span>
+</span></span><span style=display:flex><span>kubectl describe deployment &lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Watch rollout status (use this after any deploy)</span>
+</span></span><span style=display:flex><span>kubectl rollout status deployment/&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># View rollout history</span>
+</span></span><span style=display:flex><span>kubectl rollout <span style=color:#8be9fd;font-style:italic>history</span> deployment/&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># View a specific revision</span>
+</span></span><span style=display:flex><span>kubectl rollout <span style=color:#8be9fd;font-style:italic>history</span> deployment/&lt;name&gt; --revision<span style=color:#ff79c6>=</span><span style=color:#bd93f9>3</span>
+</span></span></code></pre></div><p><strong>Rollback deployments</strong> - the fastest recovery tool you have:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Undo last rollout</span>
+</span></span><span style=display:flex><span>kubectl rollout undo deployment/&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Roll back to a specific revision</span>
+</span></span><span style=display:flex><span>kubectl rollout undo deployment/&lt;name&gt; --to-revision<span style=color:#ff79c6>=</span><span style=color:#bd93f9>2</span>
+</span></span></code></pre></div><p><strong>Scaling and updating</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Scale replicas</span>
+</span></span><span style=display:flex><span>kubectl scale deployment &lt;name&gt; --replicas<span style=color:#ff79c6>=</span><span style=color:#bd93f9>5</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Update a container image</span>
+</span></span><span style=display:flex><span>kubectl <span style=color:#8be9fd;font-style:italic>set</span> image deployment/&lt;name&gt; &lt;container&gt;<span style=color:#ff79c6>=</span>&lt;image&gt;:&lt;tag&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Force a rolling restart (no config change needed)</span>
+</span></span><span style=display:flex><span>kubectl rollout restart deployment/&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Pause a rollout (useful for staged deploys)</span>
+</span></span><span style=display:flex><span>kubectl rollout pause deployment/&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Resume a paused rollout</span>
+</span></span><span style=display:flex><span>kubectl rollout resume deployment/&lt;name&gt;
+</span></span></code></pre></div><hr><h2 id=service-commands>Service Commands</h2><p><strong>Kubernetes services</strong> control how your workloads are exposed:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List services</span>
+</span></span><span style=display:flex><span>kubectl get services
+</span></span><span style=display:flex><span>kubectl get svc   <span style=color:#6272a4># short form</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Service details with endpoints</span>
+</span></span><span style=display:flex><span>kubectl describe svc &lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Expose a deployment as a ClusterIP service</span>
+</span></span><span style=display:flex><span>kubectl expose deployment &lt;name&gt; --port<span style=color:#ff79c6>=</span><span style=color:#bd93f9>80</span> --target-port<span style=color:#ff79c6>=</span><span style=color:#bd93f9>8080</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Expose as a NodePort service</span>
+</span></span><span style=display:flex><span>kubectl expose deployment &lt;name&gt; --type<span style=color:#ff79c6>=</span>NodePort --port<span style=color:#ff79c6>=</span><span style=color:#bd93f9>80</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Port forward to a service for local access</span>
+</span></span><span style=display:flex><span>kubectl port-forward svc/&lt;name&gt; 8080:80
+</span></span></code></pre></div><hr><h2 id=configmap--secret-commands>ConfigMap & Secret Commands</h2><p><strong>ConfigMaps and Secrets</strong> are how Kubernetes manages configuration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Create ConfigMap from literal values</span>
+</span></span><span style=display:flex><span>kubectl create configmap my-config --from-literal<span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>key1</span><span style=color:#ff79c6>=</span>value1 --from-literal<span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>key2</span><span style=color:#ff79c6>=</span>value2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create ConfigMap from a file</span>
+</span></span><span style=display:flex><span>kubectl create configmap my-config --from-file<span style=color:#ff79c6>=</span>config.properties
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create ConfigMap from a directory</span>
+</span></span><span style=display:flex><span>kubectl create configmap my-config --from-file<span style=color:#ff79c6>=</span>./config-dir/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Get and describe ConfigMaps</span>
+</span></span><span style=display:flex><span>kubectl get configmap &lt;name&gt;
+</span></span><span style=display:flex><span>kubectl describe configmap &lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># View ConfigMap data as YAML</span>
+</span></span><span style=display:flex><span>kubectl get configmap &lt;name&gt; -o yaml
+</span></span></code></pre></div><p><strong>Secrets management</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Create a generic secret</span>
+</span></span><span style=display:flex><span>kubectl create secret generic my-secret --from-literal<span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>password</span><span style=color:#ff79c6>=</span>s3cr3t
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a TLS secret from cert files</span>
+</span></span><span style=display:flex><span>kubectl create secret tls my-tls-secret --cert<span style=color:#ff79c6>=</span>tls.crt --key<span style=color:#ff79c6>=</span>tls.key
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create Docker registry secret</span>
+</span></span><span style=display:flex><span>kubectl create secret docker-registry regcred <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --docker-server<span style=color:#ff79c6>=</span>registry.example.com <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --docker-username<span style=color:#ff79c6>=</span>user <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --docker-password<span style=color:#ff79c6>=</span>pass
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List and view secrets</span>
+</span></span><span style=display:flex><span>kubectl get secrets
+</span></span><span style=display:flex><span>kubectl describe secret &lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Base64 decode a secret value (useful for debugging)</span>
+</span></span><span style=display:flex><span>kubectl get secret &lt;name&gt; -o <span style=color:#8be9fd;font-style:italic>jsonpath</span><span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;{.data.password}&#39;</span> | base64 --decode
+</span></span></code></pre></div><hr><h2 id=namespace-commands>Namespace Commands</h2><p><strong>Namespace management</strong> is essential for multi-team clusters:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List all namespaces</span>
+</span></span><span style=display:flex><span>kubectl get namespaces
+</span></span><span style=display:flex><span>kubectl get ns   <span style=color:#6272a4># short form</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a namespace</span>
+</span></span><span style=display:flex><span>kubectl create namespace &lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Set default namespace for your current context</span>
+</span></span><span style=display:flex><span>kubectl config set-context --current --namespace<span style=color:#ff79c6>=</span>&lt;name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Run any command against all namespaces</span>
+</span></span><span style=display:flex><span>kubectl get pods -A
+</span></span><span style=display:flex><span>kubectl get pods --all-namespaces   <span style=color:#6272a4># long form</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Delete a namespace (WARNING: deletes all resources inside)</span>
+</span></span><span style=display:flex><span>kubectl delete namespace &lt;name&gt;
+</span></span></code></pre></div><hr><h2 id=debugging-commands>Debugging Commands</h2><p><strong>Kubernetes debugging</strong> requires a specific toolkit. These are the commands that matter most in incidents:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Show cluster events sorted by time (best first step in any incident)</span>
+</span></span><span style=display:flex><span>kubectl get events --sort-by<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;.lastTimestamp&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Events for a specific namespace</span>
+</span></span><span style=display:flex><span>kubectl get events -n &lt;namespace&gt; --sort-by<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;.lastTimestamp&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Filter events for a specific resource</span>
+</span></span><span style=display:flex><span>kubectl get events --field-selector involvedObject.name<span style=color:#ff79c6>=</span>&lt;pod-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Get all resource details for a failing pod</span>
+</span></span><span style=display:flex><span>kubectl describe pod &lt;pod-name&gt; | grep -A <span style=color:#bd93f9>20</span> Events
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List pods with non-Running status quickly</span>
+</span></span><span style=display:flex><span>kubectl get pods -A --field-selector<span style=color:#ff79c6>=</span>status.phase!<span style=color:#ff79c6>=</span>Running
+</span></span></code></pre></div><p><strong>Ephemeral debug containers</strong> - introduced in K8s 1.23, now stable:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Attach a debug container to a running pod (great for distroless images)</span>
+</span></span><span style=display:flex><span>kubectl debug -it &lt;pod-name&gt; --image<span style=color:#ff79c6>=</span>busybox --target<span style=color:#ff79c6>=</span>&lt;container-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a copy of a pod with debug tools added</span>
+</span></span><span style=display:flex><span>kubectl debug &lt;pod-name&gt; -it --copy-to<span style=color:#ff79c6>=</span>debug-pod --image<span style=color:#ff79c6>=</span>nicolaka/netshoot
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Debug a node by running a privileged pod on it</span>
+</span></span><span style=display:flex><span>kubectl debug node/&lt;node-name&gt; -it --image<span style=color:#ff79c6>=</span>busybox
+</span></span></code></pre></div><p><strong>Checking resource availability</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># See pending pods and why they&#39;re pending</span>
+</span></span><span style=display:flex><span>kubectl describe pod &lt;pending-pod&gt; | grep -A <span style=color:#bd93f9>10</span> Events
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Check resource requests vs node capacity</span>
+</span></span><span style=display:flex><span>kubectl describe nodes | grep -A <span style=color:#bd93f9>5</span> <span style=color:#f1fa8c>&#34;Allocated resources&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Get pods with their resource requests</span>
+</span></span><span style=display:flex><span>kubectl get pods -o custom-columns<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;NAME:.metadata.name,CPU:.spec.containers[0].resources.requests.cpu,MEM:.spec.containers[0].resources.requests.memory&#39;</span>
+</span></span></code></pre></div><hr><h2 id=rbac-commands>RBAC Commands</h2><p><strong>Role-Based Access Control</strong> governs who can do what in your cluster:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Check if current user can perform an action</span>
+</span></span><span style=display:flex><span>kubectl auth can-i get pods
+</span></span><span style=display:flex><span>kubectl auth can-i create deployments -n production
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Check what a specific ServiceAccount can do</span>
+</span></span><span style=display:flex><span>kubectl auth can-i --list --as<span style=color:#ff79c6>=</span>system:serviceaccount:&lt;namespace&gt;:&lt;sa-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Check all permissions in a namespace</span>
+</span></span><span style=display:flex><span>kubectl auth can-i --list -n &lt;namespace&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a Role (namespace-scoped)</span>
+</span></span><span style=display:flex><span>kubectl create role pod-reader --verb<span style=color:#ff79c6>=</span>get,list,watch --resource<span style=color:#ff79c6>=</span>pods -n &lt;namespace&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a ClusterRole (cluster-scoped)</span>
+</span></span><span style=display:flex><span>kubectl create clusterrole pod-reader --verb<span style=color:#ff79c6>=</span>get,list,watch --resource<span style=color:#ff79c6>=</span>pods
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a RoleBinding</span>
+</span></span><span style=display:flex><span>kubectl create rolebinding read-pods <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --role<span style=color:#ff79c6>=</span>pod-reader <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --serviceaccount<span style=color:#ff79c6>=</span>&lt;namespace&gt;:&lt;sa-name&gt; <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  -n &lt;namespace&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Create a ClusterRoleBinding</span>
+</span></span><span style=display:flex><span>kubectl create clusterrolebinding read-pods-global <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --clusterrole<span style=color:#ff79c6>=</span>pod-reader <span style=color:#f1fa8c>\
+</span></span></span><span style=display:flex><span><span style=color:#f1fa8c></span>  --serviceaccount<span style=color:#ff79c6>=</span>&lt;namespace&gt;:&lt;sa-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Describe a role to see its rules</span>
+</span></span><span style=display:flex><span>kubectl describe role &lt;role-name&gt; -n &lt;namespace&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List all RoleBindings in a namespace</span>
+</span></span><span style=display:flex><span>kubectl get rolebindings -n &lt;namespace&gt; -o wide
+</span></span></code></pre></div><hr><h2 id=node--cluster-commands>Node & Cluster Commands</h2><p><strong>Node management</strong> commands for cluster administrators:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List nodes with status and roles</span>
+</span></span><span style=display:flex><span>kubectl get nodes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List nodes with detailed info (OS, kernel, container runtime)</span>
+</span></span><span style=display:flex><span>kubectl get nodes -o wide
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Node resource usage (requires metrics-server)</span>
+</span></span><span style=display:flex><span>kubectl top nodes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Detailed node info including taints and conditions</span>
+</span></span><span style=display:flex><span>kubectl describe node &lt;node-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Mark a node as unschedulable (no new pods will be placed)</span>
+</span></span><span style=display:flex><span>kubectl cordon &lt;node-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Drain a node (evict pods, then cordon) - for maintenance</span>
+</span></span><span style=display:flex><span>kubectl drain &lt;node-name&gt; --ignore-daemonsets --delete-emptydir-data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Mark node schedulable again after maintenance</span>
+</span></span><span style=display:flex><span>kubectl uncordon &lt;node-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Taint a node (prevent scheduling unless pod has matching toleration)</span>
+</span></span><span style=display:flex><span>kubectl taint nodes &lt;node-name&gt; <span style=color:#8be9fd;font-style:italic>key</span><span style=color:#ff79c6>=</span>value:NoSchedule
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Remove a taint</span>
+</span></span><span style=display:flex><span>kubectl taint nodes &lt;node-name&gt; <span style=color:#8be9fd;font-style:italic>key</span><span style=color:#ff79c6>=</span>value:NoSchedule-
+</span></span></code></pre></div><p><strong>Cluster-level information</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># Check kubectl and cluster versions</span>
+</span></span><span style=display:flex><span>kubectl version
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Cluster endpoint and service info</span>
+</span></span><span style=display:flex><span>kubectl cluster-info
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Dump cluster state (useful before migrations)</span>
+</span></span><span style=display:flex><span>kubectl cluster-info dump &gt; cluster-dump.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># List all API resources available in the cluster</span>
+</span></span><span style=display:flex><span>kubectl api-resources
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Explain a resource&#39;s spec (great for learning fields)</span>
+</span></span><span style=display:flex><span>kubectl explain pod.spec.containers
+</span></span><span style=display:flex><span>kubectl explain deployment.spec.strategy
+</span></span></code></pre></div><hr><h2 id=power-user-tips>Power User Tips</h2><p><strong>Output formats that matter:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># YAML output (use for editing and applying)</span>
+</span></span><span style=display:flex><span>kubectl get pod &lt;name&gt; -o yaml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># JSON output (use with jq for scripting)</span>
+</span></span><span style=display:flex><span>kubectl get pods -o json | jq <span style=color:#f1fa8c>&#39;.items[].metadata.name&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Custom columns</span>
+</span></span><span style=display:flex><span>kubectl get pods -o custom-columns<span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;NAME:.metadata.name,STATUS:.status.phase&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># JSONPath for specific fields</span>
+</span></span><span style=display:flex><span>kubectl get pod &lt;name&gt; -o <span style=color:#8be9fd;font-style:italic>jsonpath</span><span style=color:#ff79c6>=</span><span style=color:#f1fa8c>&#39;{.status.podIP}&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Wide output (more columns)</span>
+</span></span><span style=display:flex><span>kubectl get pods -o wide
+</span></span></code></pre></div><p><strong>Context and config management:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#6272a4># List all configured contexts</span>
+</span></span><span style=display:flex><span>kubectl config get-contexts
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Switch context</span>
+</span></span><span style=display:flex><span>kubectl config use-context &lt;context-name&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># View current context</span>
+</span></span><span style=display:flex><span>kubectl config current-context
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#6272a4># Merge kubeconfig files</span>
+</span></span><span style=display:flex><span><span style=color:#8be9fd;font-style:italic>KUBECONFIG</span><span style=color:#ff79c6>=</span>~/.kube/config:~/new-cluster.yaml kubectl config view --flatten &gt; ~/.kube/merged-config
+</span></span></code></pre></div><hr><h2 id=whats-next>What&rsquo;s Next</h2><p>This cheatsheet covers the commands. But knowing when to use each one - and building muscle memory around incident response patterns - takes practice in real clusters.</p><p>Use our <a href=/tools/kubectl-cheatsheet/>interactive kubectl cheatsheet tool</a> for a searchable, filterable version you can use directly in your browser without switching tabs.</p><p>For deeper Kubernetes operations support, explore our <a href=https://kubernetes.ae/services/managed-k8s/>Managed Kubernetes Operations service at kubernetes.ae</a> - we run clusters so your team can ship features.</p></div></section><section class="cta-section animate-in"><div class=container><h2>Get Expert Kubernetes Help</h2><p>Talk to a <strong>certified Kubernetes expert</strong>. Free 30-minute consultation - actionable findings within days.</p><a href=/contact/ class="btn btn-primary">Talk to an Expert</a></div></section></main><footer class=footer><div class=container><div class=footer-grid><div class=footer-brand><a href=/ class=nav-logo><svg class="logo-icon-svg" viewBox="0 0 36 32" width="28" height="25"><polygon points="18,1 23.5,4.2 23.5,10.5 18,13.7 12.5,10.5 12.5,4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="9,12.3 14.5,15.5 14.5,21.8 9,25 3.5,21.8 3.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><polygon points="27,12.3 32.5,15.5 32.5,21.8 27,25 21.5,21.8 21.5,15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="13.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="22.5" cy="11.9" r="1.4" fill="currentColor" opacity=".85"/><circle cx="18" cy="19.5" r="1.4" fill="currentColor" opacity=".85"/></svg>
+<span>kubernetes<span class=logo-accent>guru</span></span></a><p>The global Kubernetes authority. <strong>Expert Kubernetes consulting</strong>, interactive tools, and deep technical guides for engineering teams worldwide.</p></div><div class=footer-col><h4>Services</h4><a href=/services/k8s-health-assessment/>K8s Health Assessment</a>
+<a href=/services/k8s-cost-optimization/>K8s Cost Optimization</a>
+<a href=/services/k8s-security-hardening/>K8s Security Hardening</a>
+<a href=/services/ai-ml-infrastructure/>AI/ML Infrastructure</a>
+<a href=/services/platform-engineering/>Platform Engineering</a>
+<a href=/services/k8s-migration/>K8s Migration</a>
+<a href=/services/multi-cluster-strategy/>Multi-Cluster Strategy</a>
+<a href=/services/managed-k8s/>Managed K8s Operations</a></div><div class=footer-col><h4>Industries</h4><a href=/industries/fintech/>Fintech & Payments</a>
+<a href=/industries/healthcare/>Healthcare & Life Sciences</a>
+<a href=/industries/saas/>SaaS & Technology</a>
+<a href=/industries/media/>Media & Streaming</a>
+<a href=/industries/ecommerce/>E-commerce & Retail</a>
+<a href=/industries/ai-ml/>AI & Machine Learning</a></div><div class=footer-col><h4>Company</h4><a href=/about/>About</a>
+<a href=/blog/>Blog</a>
+<a href=/contact/>Contact</a>
+<a href=https://kubernetes.ae>kubernetes.ae</a>
+<a href=https://devsecops.ae>devsecops.ae</a>
+<a href=https://remote.qa>remote.qa</a>
+<a href=/legal/privacy-policy/>Privacy Policy</a>
+<a href=/legal/terms-of-service/>Terms of Service</a></div></div><div class=footer-bottom><span>&copy; 2026 KubernetesGuru.</span><div class=footer-social><a href=https://www.linkedin.com/company/nomadx-ae target=_blank rel=noopener>LinkedIn</a>
+<a href=https://github.com/nomadx-ae target=_blank rel=noopener>GitHub</a>
+<a href=https://twitter.com/rustemabd target=_blank rel=noopener>Twitter</a></div></div></div></footer><script src=/js/main.js defer></script><script type=text/javascript id=hs-script-loader async defer src=//js.hs-scripts.com/23332861.js></script></body></html>
